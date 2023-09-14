@@ -1,51 +1,40 @@
-import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
-import react, { useState } from "react";
-import { AntDesign } from '@expo/vector-icons';
+import { View, Text, FlatList, } from "react-native";
+import React, { useEffect, useState } from "react";
+import Header from "../components/Header";
+import Search from "../components/Search";
+import { products }from "../data/Productos";
+import ProductosItem from "../components/ProductosItem";
+import { TextInput } from "react-native";
 
 
+const Productos = ({ category }) => {
+   const [categoriaProductos, setCategoriaPro] = useState([]);
+   const [text, setText] = useState(null);
+   
+  
+   
+   useEffect (()=> {
+        const categoriaProductos = products.filter((el)=> el.category === category);
+        setCategoriaPro(categoriaProductos);
+        // console.log(categoriaProductos);
 
-
-const Search = () => {
-    const [text, setText] = useState("")
-
+        if (text) {
+            const tituloProducto = products.filter((el) => el.title.toLowerCase() === text.toLowerCase())
+            setCategoriaPro(tituloProducto);
+        }
+    },[ text, category]);
+    
     return (
-        <View style={styles.container}>
-            <TextInput
-                onChangeText={(value) => setText(value)}
-                value={text}
-                style={styles.Input}
-                placeholder="Busca Un producto aqui"
+        <View>
+            
+            <Header title = "Productos" />
+            <Search text={text} setText={setText}/>
+            <FlatList
+            data = {categoriaProductos}
+            keyExtractor={products.id}
+            renderItem={({item}) => <ProductosItem item={item} />}
             />
-            <Pressable style={styles.Pressable} onPress={()=> console.log("ahh")}>
-                <AntDesign name="close" size={30} color="black" />
-            </Pressable>
-
         </View>
-
     )
 }
-styles = StyleSheet.create({
-    container: {
-        justifyContent: "center",
-        flexDirection: "row",
-        alignItems: "center",
-        marginVertical: 20,
-        backgroundColor: "white"
-    },
-    Input: {
-        width: "78%",
-        borderWidth: 1,
-        borderRadius: 8,
-        padding: 10,
-        fontSize: 20,
-        marginRight: 15,
-        marginTop: 40
-    }, 
-    Pressable: {
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 40
-    }
-
-})
-export default Search
+export default Productos
