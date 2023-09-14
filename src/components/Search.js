@@ -5,8 +5,10 @@ import { AntDesign } from '@expo/vector-icons';
 
 
 
-const Search = () => {
-    const [text, setText] = useState("")
+const Search = ({text,  setText}) => {
+    const cleartext = () => {
+        setText(null)
+    }
 
     return (
         <View style={styles.container}>
@@ -16,7 +18,7 @@ const Search = () => {
                 style={styles.Input}
                 placeholder="Busca Un producto aqui"
             />
-            <Pressable style={styles.Pressable} onPress={()=> console.log("ahh")}>
+            <Pressable style={styles.Pressable} onPress={()=>cleartext()} >
                 <AntDesign name="close" size={30} color="black" />
             </Pressable>
 

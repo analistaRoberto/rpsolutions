@@ -15,7 +15,7 @@ export default function App() {
 
       {/* <Home /> */}
       {/* <Search /> */}
-      <Productos Categorias = "smartphones"/>
+      <Productos category="smartphones"/>
     </SafeAreaView>
   );
 }
