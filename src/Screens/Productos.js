@@ -1,41 +1,58 @@
-import { View, Text, FlatList, } from "react-native";
+import { View, Text, FlatList, Pressable, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Search from "../components/Search";
-import { products }from "../data/Productos";
+import { products } from "../data/Productos";
 import ProductosItem from "../components/ProductosItem";
-import { TextInput } from "react-native";
+import { colors } from "../theme/colors";
+import { Ionicons } from '@expo/vector-icons';
 
+const Productos = ({ route, navigation }) => {
+    const [categoriaProductos, setCategoriaPro] = useState([]);
+    const [text, setText] = useState(null);
+    const { item } = route.params
 
-const Productos = ({ category }) => {
-   const [categoriaProductos, setCategoriaPro] = useState([]);
-   const [text, setText] = useState(null);
-   
-   console.log("gfg", text)
-   console.log("categry Prod", categoriaProductos)
-   
-   useEffect (()=> {
-        const categoriaProductos = products.filter((el)=> el.category === category);
+    useEffect(() => {
+        const categoriaProductos = products.filter((el) => el.category === item);
         setCategoriaPro(categoriaProductos);
-        // console.log(categoriaProductos);
 
         if (text) {
             const tituloProducto = products.filter((el) => el.title.toLowerCase() === text.toLowerCase())
             setCategoriaPro(tituloProducto);
         }
-    },[ text, category]);
-    
+    }, [text, item]);
+
     return (
-        <View>
-            
-            <Header title = "Productos" />
-            <Search text={text} setText={setText}/>
+
+        <View style={styles.contain}>
+            <Header title={item} />
+            <Search text={text} setText={setText} />
+
+            <Pressable style={styles.icons} onPress={() => navigation.goBack()}>
+                <Ionicons name="arrow-back-circle-outline" size={34} color="white" />
+            </Pressable>
+
+
+
+
             <FlatList
-            data = {categoriaProductos}
-            keyExtractor={products.id}
-            renderItem={({item}) => <ProductosItem item={item} />}
+                data={categoriaProductos}
+                keyExtractor={products.id}
+                renderItem={({ item }) => <ProductosItem navigation={navigation} item={item} />}
             />
         </View>
     )
 }
 export default Productos
+const styles = StyleSheet.create({
+    contain: {
+        backgroundColor: colors.contFonts
+    },
+    icons: {
+
+        position: 'absolute',
+        top: 80,
+        left: 16,
+    }
+
+})

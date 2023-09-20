@@ -1,33 +1,37 @@
-import { View, Text, StyleSheet } from "react-native";
+import {  Text, StyleSheet, Pressable } from "react-native";
 import React from "react";
 import  {colors}  from "../theme/colors";
 
-const CategoryItem = ({item}) =>{
-    return (
-        <View>
-            <Text style={styles.texto}>
+const CategoryItem = ({item, navigation}) =>{
+    return (  
+        <Pressable style={styles.containPrincipal} onPress={() => navigation.navigate("productos", {item: item}) }>
+           
+            <Text style={styles.texto} >
                 {item}
-               
+            
             </Text>
-        </View>
+            
+        </Pressable>
     );
 };
 
 const styles = StyleSheet.create ({
+    containPrincipal: {
+        backgroundColor: colors.contFonts,
+        alignItems: "center"
+    },
     texto: {
        color: colors.softOrange,
-        fontSize: 20,
+        fontSize: 24,
         margin: 5,
         alignItems: "center",
-        
-        width: "96%",
-        borderWidth: .3,
-        borderColor: 'white',
+        width: "90%",
+        borderWidth: 1,
+        borderColor: colors.headerButton,
         borderRadius: 15,
         textAlign: 'center',
         padding: 4
     }
-
 })
 export default CategoryItem
 

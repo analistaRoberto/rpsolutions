@@ -1,8 +1,7 @@
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import { View,  FlatList, StyleSheet } from "react-native";
 import React from "react";
 import { categorias } from "../data/categorias";
 import CategoryItem from "./CategoryItems";
-import { colors } from "../theme/colors";
 
 const Categorias= () => {
     return (
@@ -15,14 +14,6 @@ const Categorias= () => {
         </View>
     )
 }
-
 const styles = StyleSheet.create ({
-    container: {
-        backgroundColor: colors.heavyGray
-    }
-        
-    
-
-
 })
 export default Categorias

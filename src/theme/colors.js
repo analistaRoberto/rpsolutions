@@ -1,8 +1,8 @@
 
 export const colors = {
-    heavyGray: "#454545",
-    mediumOrange: "#FF6000",
-    ligthOrange: "#FFA559",
-    softOrange: "#FFE6C7"
+   headerButton: "#1e1801",
+    contFonts: "#dacdac",
+    fontDescripcion: "#f85741",
+    AuxlarColor: "#0e9094"
 }
 

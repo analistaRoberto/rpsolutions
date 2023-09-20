@@ -1,15 +1,11 @@
 import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
-import react, { useState } from "react";
 import { AntDesign } from '@expo/vector-icons';
-
-
-
+import { colors } from "../theme/colors";
 
 const Search = ({text,  setText}) => {
     const cleartext = () => {
         setText(null)
     }
-
     return (
         <View style={styles.container}>
             <TextInput
@@ -23,16 +19,17 @@ const Search = ({text,  setText}) => {
             </Pressable>
 
         </View>
-
     )
 }
-styles = StyleSheet.create({
+export default Search
+
+const styles = StyleSheet.create({
     container: {
         justifyContent: "center",
         flexDirection: "row",
         alignItems: "center",
         marginVertical: 20,
-        backgroundColor: "white"
+        backgroundColor: colors.contFonts   
     },
     Input: {
         width: "78%",
@@ -50,4 +47,3 @@ styles = StyleSheet.create({
     }
 
 })
-export default Search

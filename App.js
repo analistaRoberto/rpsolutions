@@ -1,36 +1,39 @@
 
-import { SafeAreaView, StyleSheet,  View } from 'react-native';
-import { colors } from './src/theme/colors'
-import Header from './src/components/Header';
-import Categorias from './src/components/categorias';
+import { StyleSheet } from 'react-native';
+import { colors } from './src/theme/colors';
 import React from 'react';
-import Home from './src/Screens/home';
-import Search from './src/components/Search';
-import Productos from './src/Screens/Productos';
-
+import { useFonts } from 'expo-font';
+import { NavigationContainer } from '@react-navigation/native';
+import RouteNavigation from './src/navigation/RouteNavigation';
 
 export default function App() {
-  return (
-    <SafeAreaView >
 
-      {/* <Home /> */}
-      {/* <Search /> */}
-      <Productos category="smartphones"/>
-    </SafeAreaView>
+  const [fontLoader] = useFonts({
+    shadows: require("./assets/Fonts/ShadowsIntoLight-Regular.ttf"),
+    playTitulo: require("./assets/Fonts/Play-Bold.ttf"),
+    playCuerpo: require("./assets/Fonts/Play-Regular.ttf")
+  });
+  if (fontLoader === false) {
+    return;
+  };
+
+  return (
+    <NavigationContainer style={styles.containerPrincipal}>
+      <RouteNavigation />
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerPrincipal: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: colors.letterColor,
+
   },
   texto: {
-    color: colors.mediumOrange,
+    color: colors.descriptonColor,
     fontSize: 20
 
   }
-  
+
 });
