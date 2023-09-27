@@ -14,4 +14,5 @@ const RouteNavigation = () =>{
         </Stack.Navigator>
     )
 }
+
 export default RouteNavigation

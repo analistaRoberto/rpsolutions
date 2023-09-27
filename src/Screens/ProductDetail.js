@@ -1,5 +1,4 @@
 import { View, Text, StyleSheet, Image } from "react-native";
-import { products } from "../data/Productos";
 import Header from "../components/Header";
 import { Pressable } from "react-native";
 import { colors } from "../theme/colors";
@@ -8,7 +7,6 @@ import { Ionicons } from '@expo/vector-icons';
 const ProductDetail = ({ navigation, route }) => {
    
     const { item } = route.params 
-    
     return (
         <View style={styles.containPrincipal}>
             <Header title="Caracteristica" navigation={navigation} />

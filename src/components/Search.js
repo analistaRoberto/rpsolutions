@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
+import { View, StyleSheet, TextInput, Pressable } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
 import { colors } from "../theme/colors";
 
@@ -17,7 +17,6 @@ const Search = ({text,  setText}) => {
             <Pressable style={styles.Pressable} onPress={()=>cleartext()} >
                 <AntDesign name="close" size={30} color="black" />
             </Pressable>
-
         </View>
     )
 }
@@ -45,5 +44,4 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 40
     }
-
 })

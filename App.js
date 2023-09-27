@@ -4,7 +4,10 @@ import { colors } from './src/theme/colors';
 import React from 'react';
 import { useFonts } from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
-import RouteNavigation from './src/navigation/RouteNavigation';
+import TabNav from './src/navigation/TabNav';
+import { Provider } from 'react-redux';
+import { store } from './src/redux/store';
+
 
 export default function App() {
 
@@ -18,9 +21,12 @@ export default function App() {
   };
 
   return (
-    <NavigationContainer style={styles.containerPrincipal}>
-      <RouteNavigation />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer style={styles.containerPrincipal}>
+        <TabNav />
+      </NavigationContainer>
+    </Provider>
+
   );
 }
 
