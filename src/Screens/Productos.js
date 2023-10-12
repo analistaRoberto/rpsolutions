@@ -22,9 +22,9 @@ const Productos = ({ route, navigation }) => {
       
         setCategoriaPro(productFiltradosCategorias);
 
-        if (text) {
+        if (text) { 
             const tituloProducto = products.filter((el) => el.title.toLowerCase() === text.toLowerCase())
-            setCategoriaPro(tituloProducto);
+            setCategoriaPrwo(tituloProducto);
         }
     }, [text, item]);
  

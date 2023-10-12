@@ -40,6 +40,12 @@ const styles = StyleSheet.create({
     color: colors.descriptonColor,
     fontSize: 20
 
-  }
-
+  },
+ "plugins":  [
+   [
+    "expo-location", {
+      "locationAlwaysWhenInUsePermissiom": "Permitir acceso a la aplication"
+    }
+   ]
+ ]
 });

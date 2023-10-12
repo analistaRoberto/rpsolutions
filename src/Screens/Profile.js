@@ -1,10 +1,16 @@
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
-import react from "react";
 import Header from "../components/Header";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { colors } from "../theme/colors";
-const Profile = () => {
+
+import { useState } from "react";
+
+const Profile = ({navigation}) => {
+    const [location, setLocation] = useState (null);
+    
+    
+    
     return (
         <View style={styles.cont}>
             <Header title="Mi Perfil" />
@@ -31,7 +37,7 @@ const Profile = () => {
                 <Text style={styles.text}>
                     Click Ingresar a su Ubicacion
                 </Text>
-                <Pressable onPress={() => console.log("Presionando Ubicacion")}>
+                <Pressable onPress={() => navigation.n}>
                     <Feather name="map-pin" size={40} color="black" />
                 </Pressable>
             </View>
@@ -40,6 +46,17 @@ const Profile = () => {
         </View>
     )
 }
+const getCoords = async () => {
+      
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      setErrorMsg('Permiso no permitido');
+      return;
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    setLocation(location);
+  };
 const styles = StyleSheet.create({
     imagen: {
         width: 200,
